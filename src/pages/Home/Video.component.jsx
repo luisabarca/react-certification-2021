@@ -44,14 +44,14 @@ const VideoThumbnail = styled.div`
 
 const Video = ({ video }) => {
   const { thumbnails, title, description } = video.snippet;
-  const url = `https://www.youtube.com/watch?v=${video.id.videoId}`;
+  const url = `https://www.youtube.com/watch?v=${video.id.videoId || video.id.channelId}`;
 
   return (
     <a href={url}>
       <VideoContainer>
-        <VideoThumbnail url={thumbnails.high.url} />
+        <VideoThumbnail role="img" url={thumbnails.high.url} />
         <VideoTitle>{title}</VideoTitle>
-        <VideoDescription>{description}</VideoDescription>
+        <VideoDescription role="note">{description}</VideoDescription>
       </VideoContainer>
     </a>
   );
