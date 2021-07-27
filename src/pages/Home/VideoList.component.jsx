@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import Video from './Video.component';
-
 import videos from '../../data/youtube-data.json';
+
+const getVideos = () => videos.items;
 
 const VideoListContainer = styled.div`
   flex: 1;
@@ -15,7 +16,7 @@ const VideoListContainer = styled.div`
 `;
 
 const VideoList = () => {
-  const { items } = videos;
+  const items = getVideos();
 
   if (items.length < 0) return null;
 
