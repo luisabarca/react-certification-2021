@@ -34,3 +34,21 @@ export const useVideo = (videoId) => {
 
   return video;
 };
+
+export const useRelatedVideos = (videoId) => {
+  const [videos, setVideos] = useState(null);
+  const { getRelatedVideos } = useYoutubeApi();
+
+  useEffect(() => {
+    if (!videoId || videoId.length < 1) return;
+
+    const runAsync = async () => {
+      const data = await getRelatedVideos(videoId);
+      setVideos((data && data.items) || []);
+    };
+
+    runAsync();
+  }, [videoId, getRelatedVideos]);
+
+  return videos;
+};

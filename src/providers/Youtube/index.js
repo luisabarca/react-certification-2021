@@ -57,7 +57,7 @@ export const YouTubeApiProvider = ({ children }) => {
 
   const getVideo = useCallback(async (videoId) => {
     const options = {
-      part: ['snippet,contentDetails,statistics'],
+      part: ['snippet,contentDetails,statistics,player'],
       id: videoId,
     };
 
@@ -69,11 +69,26 @@ export const YouTubeApiProvider = ({ children }) => {
     }
   }, []);
 
+  const getRelatedVideos = useCallback(async (videoId) => {
+    const options = {
+      part: ['snippet'],
+      relatedToVideoId: videoId,
+      type: ['video'],
+    };
+
+    try {
+      const response = await window.gapi.client.youtube.search.list(options);
+      return response.result;
+    } catch (error) {
+      return null;
+    }
+  }, []);
+
   if (!ready) return null;
 
   return (
     // eslint-disable-next-line react/jsx-filename-extension
-    <YoutubeApiContext.Provider value={{ searchVideos, getVideo }}>
+    <YoutubeApiContext.Provider value={{ searchVideos, getVideo, getRelatedVideos }}>
       {children}
     </YoutubeApiContext.Provider>
   );
