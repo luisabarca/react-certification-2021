@@ -12,6 +12,7 @@ import SecretPage from '../../pages/Secret';
 import Private from '../Private';
 import Layout from '../Layout';
 import Header from '../Header';
+import VideoPage from '../../pages/Video';
 
 function App() {
   return (
@@ -22,6 +23,9 @@ function App() {
             <Header />
             <Layout>
               <Switch>
+                <Route exact path="/video">
+                  <VideoPage />
+                </Route>
                 <Route exact path="/">
                   <HomePage />
                 </Route>
