@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   IconButton,
   InputBase,
@@ -11,6 +11,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import styled from 'styled-components';
 import { AccountCircle } from '@material-ui/icons';
+import { useSearch } from '../../providers/SearchProvider';
+import { useDebounce } from '../../utils/hooks/useDebounce';
 
 const AppHeader = styled.header`
   background-color: #1c5476;
@@ -77,6 +79,20 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = () => {
   const classes = useStyles();
+  const { query, setQuery } = useSearch();
+  const [localQuery, setLocalQuery] = useState(query);
+
+  const debounceValue = useDebounce(localQuery, 500);
+
+  useEffect(() => {
+    if (!debounceValue) return;
+
+    setQuery(debounceValue);
+  }, [debounceValue, setQuery]);
+
+  const handleChange = (e) => {
+    setLocalQuery(e.target.value);
+  };
 
   return (
     <AppHeader className="header">
@@ -91,11 +107,12 @@ const Header = () => {
           </SearchIconContainer>
           <InputBase
             placeholder="Search"
-            value="Wizeline"
+            value={localQuery}
             classes={{
               input: classes.inputInput,
             }}
             inputProps={{ 'aria-label': 'search' }}
+            onChange={handleChange}
           />
         </SearchContainer>
         <ToolbarSpacer />
