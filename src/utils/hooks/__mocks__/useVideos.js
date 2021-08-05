@@ -134,5 +134,7 @@ const video3 = {
 };
 
 module.exports = {
+  useVideo: () => [video1],
   useVideos: () => [video1, video2, video3],
+  useRelatedVideos: () => [video1, video2, video3],
 };
