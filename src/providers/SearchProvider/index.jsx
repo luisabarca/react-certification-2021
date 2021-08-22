@@ -16,7 +16,6 @@ export const SearchProvider = ({ children }) => {
   const [query, setQuery] = useState('Wizeline');
 
   return (
-    // eslint-disable-next-line react/jsx-filename-extension
     <SearchContext.Provider value={{ query, setQuery }}>
       {children}
     </SearchContext.Provider>

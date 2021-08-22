@@ -42,7 +42,6 @@ export const YouTubeApiProvider = ({ children }) => {
   }, []);
 
   return (
-    // eslint-disable-next-line react/jsx-filename-extension
     <YoutubeApiContext.Provider value={{ searchVideos, getVideo, getRelatedVideos }}>
       {children}
     </YoutubeApiContext.Provider>
