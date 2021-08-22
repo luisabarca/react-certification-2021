@@ -4,13 +4,33 @@ import renderer from 'react-test-renderer';
 import { render, screen } from '@testing-library/react';
 import Header from './Header.component';
 
+import { SearchContext } from '../../providers/SearchProvider';
+
+const renderHeaderWithSearchProvider = (snap) => {
+  const query = 'Wizeline';
+  const setQuery = jest.fn();
+  const isSnap = snap || false;
+
+  const component = (
+    <SearchContext.Provider value={{ query, setQuery}}>
+      <Header />
+    </SearchContext.Provider>
+  );
+
+  if (isSnap) {
+    return renderer.create(component);
+  }
+
+  return render(component);
+};
+
 describe('Header Component', () => {
   beforeEach(() => {
-    render(<Header />);
+    renderHeaderWithSearchProvider();
   });
 
   it('should match snapshot', () => {
-    const snap = renderer.create(<Header />);
+    const snap = renderHeaderWithSearchProvider(true);
   
     expect(snap.toJSON()).toMatchSnapshot();
   });

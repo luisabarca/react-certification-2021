@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { CircularProgress } from '@material-ui/core';
 import Video from './Video.component';
-import videos from '../../data/youtube-data.json';
-
-const getVideos = () => videos.items;
+import { useVideos } from '../../utils/hooks/useVideos';
+import { useSearch } from '../../providers/SearchProvider';
 
 const VideoListContainer = styled.div`
   flex: 1;
@@ -16,9 +16,15 @@ const VideoListContainer = styled.div`
 `;
 
 const VideoList = () => {
-  const items = getVideos();
+  const { query } = useSearch();
+  const items = useVideos(query);
 
-  if (items.length < 0) return null;
+  if (!items || items.length < 0)
+    return (
+      <div className="loading">
+        <CircularProgress />
+      </div>
+    );
 
   return (
     <VideoListContainer>

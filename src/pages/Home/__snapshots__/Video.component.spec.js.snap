@@ -1,27 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Video Component should match snapshot 1`] = `
-<a
-  href="https://www.youtube.com/watch?v=UCPGzT4wecuWM0BH9mPiulXg"
+<div
+  role="link"
 >
   <div
     className="sc-bdnxRM kUVGDG"
   >
     <div
-      className="sc-hKFxyN dCpmhy"
+      className="sc-hKFxyN dhoOuF"
       role="img"
     />
     <h2
       className="sc-gtsrHT idyCrf"
     >
-      Wizeline
+      Video Tour | Welcome to Wizeline Guadalajara
     </h2>
     <p
       className="sc-dlnjwi iOGlgu"
       role="note"
     >
-      Wizeline transforms how teams build technology. Its customers accelerate the delivery of innovative products with proven solutions, which combine Wizeline's ...
+      Follow Hector Padilla, Wizeline Director of Engineering, for a lively tour of our office.
+
+In 2018, Wizeline opened its stunning new office in Guadalajara, Jalisco, Mexico, home to over 400 employees. Wizeline has drawn attention for designing an office and culture focused on employee wellness and cultivating talent, earning a Super Espacios award by WeWork, Expansion Mexico, and Top Companies.
+
+Read more about the office here: https://www.wizeline.com/creating-first-class-facilities/
+
+If you're interested in working with Wizeline and want to experience the culture and tour our offices live, contact us at www.wizeline.com/contact/
     </p>
   </div>
-</a>
+</div>
 `;

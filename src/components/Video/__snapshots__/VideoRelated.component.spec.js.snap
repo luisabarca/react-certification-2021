@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VideoRelated Component should match snapshot 1`] = `
+<div
+  role="link"
+>
+  <div
+    className="sc-bdnxRM gCQmhL"
+  >
+    <div
+      className="sc-dlnjwi kFVqTn"
+      role="img"
+    />
+    <h2
+      className="sc-gtsrHT futQnX"
+    >
+      Video Tour | Welcome to Wizeline Guadalajara
+    </h2>
+  </div>
+</div>
+`;
