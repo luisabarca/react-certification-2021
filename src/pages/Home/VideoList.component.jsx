@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { CircularProgress } from '@material-ui/core';
 import Video from './Video.component';
 import { useVideos } from '../../utils/hooks/useVideos';
 import { useSearch } from '../../providers/SearchProvider';
@@ -18,7 +19,12 @@ const VideoList = () => {
   const { query } = useSearch();
   const items = useVideos(query);
 
-  if (items.length < 0) return null;
+  if (!items || items.length < 0)
+    return (
+      <div className="loading">
+        <CircularProgress />
+      </div>
+    );
 
   return (
     <VideoListContainer>

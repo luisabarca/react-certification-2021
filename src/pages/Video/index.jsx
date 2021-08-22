@@ -1,6 +1,7 @@
 /* eslint-disable react/no-danger */
 import React from 'react';
 import { useLocation } from 'react-router-dom';
+import { CircularProgress } from '@material-ui/core';
 import { ThumbDown, ThumbUp } from '@material-ui/icons';
 import VideoRelated from '../../components/Video/VideoRelated.component';
 import { useVideo, useRelatedVideos } from '../../utils/hooks/useVideos';
@@ -14,7 +15,12 @@ function VideoPage() {
   const video = useVideo(videoId);
   const related = useRelatedVideos(videoId);
 
-  if (!video) return null;
+  if (!video)
+    return (
+      <div className="loading">
+        <CircularProgress />
+      </div>
+    );
 
   const {
     snippet: { title, description },
