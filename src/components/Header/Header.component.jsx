@@ -82,7 +82,7 @@ const Header = () => {
   const { query, setQuery } = useSearch();
   const [localQuery, setLocalQuery] = useState(query);
 
-  const debounceValue = useDebounce(localQuery, 500);
+  const debounceValue = useDebounce(localQuery, 300);
 
   useEffect(() => {
     if (!debounceValue) return;
