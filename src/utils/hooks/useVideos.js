@@ -8,7 +8,7 @@ export const useVideos = (query) => {
   useEffect(() => {
     const runAsync = async () => {
       const data = await searchVideos(query);
-      setVideos((data && data.items) || []);
+      setVideos(data?.items || []);
     };
 
     runAsync();

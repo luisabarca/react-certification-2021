@@ -4,7 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import AuthProvider from '../../providers/Auth';
 import YouTubeApiProvider from '../../providers/Youtube';
-import SearchProvider from '../../providers/SearchProvider';
+import GlobalProvider from '../../providers/GlobalProvider';
 import HomePage from '../../pages/Home';
 import LoginPage from '../../pages/Login';
 import NotFound from '../../pages/NotFound';
@@ -15,10 +15,11 @@ import Header from '../Header';
 import VideoPage from '../../pages/Video';
 
 function App() {
+
   return (
     <BrowserRouter>
       <AuthProvider>
-        <SearchProvider>
+        <GlobalProvider>
           <YouTubeApiProvider>
             <Header />
             <Layout>
@@ -26,11 +27,11 @@ function App() {
                 <Route exact path="/video">
                   <VideoPage />
                 </Route>
-                <Route exact path="/">
-                  <HomePage />
-                </Route>
                 <Route exact path="/login">
                   <LoginPage />
+                </Route>
+                <Route exact path="/">
+                  <HomePage />
                 </Route>
                 <Private exact path="/secret">
                   <SecretPage />
@@ -41,7 +42,7 @@ function App() {
               </Switch>
             </Layout>
           </YouTubeApiProvider>
-        </SearchProvider>
+        </GlobalProvider>
       </AuthProvider>
     </BrowserRouter>
   );
