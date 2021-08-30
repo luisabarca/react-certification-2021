@@ -15,7 +15,6 @@ import Header from '../Header';
 import VideoPage from '../../pages/Video';
 
 function App() {
-
   return (
     <BrowserRouter>
       <AuthProvider>

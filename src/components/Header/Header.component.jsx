@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import {
   IconButton,
   InputBase,
@@ -6,60 +7,31 @@ import {
   FormControlLabel,
   Switch,
   makeStyles,
+  Typography,
+  Menu,
+  MenuItem,
+  Drawer,
+  List,
+  ListItem,
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-import styled from 'styled-components';
 import { AccountCircle } from '@material-ui/icons';
-import { useSearch } from '../../providers/SearchProvider';
+
+import { useGlobalContext } from '../../providers/GlobalProvider';
 import { useDebounce } from '../../utils/hooks/useDebounce';
-
-const AppHeader = styled.header`
-  background-color: #1c5476;
-  box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%);
-  color: #fff;
-  display: flex;
-  min-height: 64px;
-  width: 100%;
-  z-index: 1100;
-  box-sizing: border-box;
-  flex-shrink: 0;
-  flex-direction: column;
-`;
-
-const SearchContainer = styled.div`
-  background-color: rgba(255, 255, 255, 0.15);
-  position: relative;
-  border-radius: 5px;
-  margin-right: 10px;
-  margin-left: 0;
-  width: 100%;
-  display: flex;
-  flex: 4;
-`;
-
-const SearchIconContainer = styled.div`
-  padding: 10px;
-  height: 100%;
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const ToolbarSpacer = styled.div`
-  display: flex;
-  flex-grow: 10;
-  flex: 10;
-`;
-
-const ToolbarRight = styled.div`
-  display: flex;
-  flex: 5;
-  justify-content: flex-end;
-`;
+import {
+  SearchContainer,
+  SearchIconContainer,
+  AppHeader,
+  ToolbarSpacer,
+  ToolbarRight,
+} from './styled';
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+  },
   inputInput: {
     color: 'white',
     padding: theme.spacing(1, 1, 1, 0),
@@ -75,11 +47,24 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flex: 1,
   },
+  title: {
+    paddingRight: '15px',
+  },
+  drawer: {
+    display: 'flex',
+    width: 240,
+  },
+  appBar: {
+    backgroundColor: theme.palette.type !== 'dark' ? '#1c5476' : '#556cd6',
+  },
 }));
 
 const Header = () => {
   const classes = useStyles();
-  const { query, setQuery } = useSearch();
+  const history = useHistory();
+  const { query, setQuery, theme, toggleTheme, logout } = useGlobalContext();
+  const [menuLeftEl, setMenuLeftEl] = useState(null);
+  const [menuRightEl, setMenuRightEl] = useState(null);
   const [localQuery, setLocalQuery] = useState(query);
 
   const debounceValue = useDebounce(localQuery, 300);
@@ -94,12 +79,92 @@ const Header = () => {
     setLocalQuery(e.target.value);
   };
 
+  const handleLeftMenu = (event) => {
+    setMenuLeftEl(event.currentTarget);
+  };
+
+  const handleLeftMenuClose = () => {
+    setMenuLeftEl(null);
+  };
+
+  const handleRightMenu = (event) => {
+    setMenuRightEl(event.currentTarget);
+  };
+
+  const handleRightMenuClose = () => {
+    setMenuRightEl(null);
+  };
+
+  const handleGoHome = (e) => {
+    e.preventDefault();
+    handleLeftMenuClose();
+    history.push('/');
+  };
+
+  const handleGoLogin = (e) => {
+    e.preventDefault();
+    handleLeftMenuClose();
+    history.push('/login');
+  };
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+    handleLeftMenuClose();
+    logout();
+    history.push('/');
+  };
+
+  const renderLeftMenu = (
+    <Drawer
+      className={classes.drawer}
+      anchor="left"
+      open={Boolean(menuLeftEl)}
+      onClose={handleLeftMenuClose}
+      classes={{
+        paper: classes.drawer,
+      }}
+    >
+      <List>
+        <ListItem button onClick={handleGoHome}>
+          Home
+        </ListItem>
+        <ListItem button onClick={handleLogout}>
+          Logout
+        </ListItem>
+      </List>
+    </Drawer>
+  );
+
+  const renderRightMenu = (
+    <Menu
+      anchorEl={menuRightEl}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      id="header-right-menu"
+      keepMounted
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={Boolean(menuRightEl)}
+      onClose={handleRightMenuClose}
+    >
+      <MenuItem onClick={handleGoLogin}>Login</MenuItem>
+      <MenuItem onClick={handleLogout}>Logout</MenuItem>
+    </Menu>
+  );
+
   return (
-    <AppHeader className="header">
+    <AppHeader className={classes.appBar}>
       <Toolbar className={classes.toolbar}>
-        <IconButton edge="start" color="inherit" aria-label="open drawer">
+        <IconButton
+          edge="start"
+          color="inherit"
+          aria-label="open drawer"
+          onClick={handleLeftMenu}
+        >
           <MenuIcon />
         </IconButton>
+
+        <Typography className={classes.title} variant="h6" noWrap>
+          Wizeline Bootcamp
+        </Typography>
 
         <SearchContainer>
           <SearchIconContainer>
@@ -118,14 +183,23 @@ const Header = () => {
         <ToolbarSpacer />
         <ToolbarRight>
           <FormControlLabel
-            control={<Switch checked={false} name="checkedB" color="primary" />}
+            control={
+              <Switch
+                checked={theme === 'dark'}
+                name="checkedB"
+                color="primary"
+                onChange={toggleTheme}
+              />
+            }
             label="Dark mode"
           />
-          <IconButton aria-haspopup="true" disabled>
+          <IconButton aria-haspopup="true" onClick={handleRightMenu}>
             <AccountCircle fontSize="large" />
           </IconButton>
         </ToolbarRight>
       </Toolbar>
+      {renderLeftMenu}
+      {renderRightMenu}
     </AppHeader>
   );
 };
