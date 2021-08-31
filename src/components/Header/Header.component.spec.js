@@ -2,13 +2,12 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { fireEvent, render, screen } from '@testing-library/react';
-import Header from './Header.component';
-
-import { GlobalContext } from '../../providers/GlobalProvider';
-import AuthProvider from '../../providers/Auth';
 import userEvent from '@testing-library/user-event';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
+
+import Header from './Header.component';
+import { GlobalContext } from '../../providers/GlobalProvider';
 
 const history = createMemoryHistory();
 
@@ -21,15 +20,14 @@ const renderHeaderWithGlobalProvider = (snap) => {
     theme: 'light',
     setTheme: jest.fn(),
     toggleTheme: jest.fn(),
+    logout: jest.fn(),
   };
 
   const component = (
     <Router history={history}>
-      <AuthProvider>
-        <GlobalContext.Provider value={props}>
-          <Header />
-        </GlobalContext.Provider>
-      </AuthProvider>
+      <GlobalContext.Provider value={props}>
+        <Header />
+      </GlobalContext.Provider>
     </Router>
   );
 
