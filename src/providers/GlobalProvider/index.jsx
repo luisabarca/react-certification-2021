@@ -18,7 +18,7 @@ export const GlobalProvider = ({ children }) => {
   const [theme, setTheme] = useState('dark');
 
   const toggleTheme = useCallback(() => {
-    setTheme(theme == 'light' ? 'dark' : 'light');
+    setTheme(theme === 'light' ? 'dark' : 'light');
   }, [theme]);
 
   const selectedTheme = createTheme({
@@ -30,7 +30,7 @@ export const GlobalProvider = ({ children }) => {
   return (
     <GlobalContext.Provider value={{ query, setQuery, theme, setTheme, toggleTheme }}>
       <ThemeProvider theme={selectedTheme}>
-      <CssBaseline />
+        <CssBaseline />
         {children}
       </ThemeProvider>
     </GlobalContext.Provider>

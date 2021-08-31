@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { CircularProgress } from '@material-ui/core';
 import Video from './Video.component';
 import { useVideos } from '../../utils/hooks/useVideos';
-import { useSearch } from '../../providers/SearchProvider';
+import { useGlobalContext } from '../../providers/GlobalProvider';
 
 const VideoListContainer = styled.div`
   flex: 1;
@@ -16,7 +16,7 @@ const VideoListContainer = styled.div`
 `;
 
 const VideoList = () => {
-  const { query } = useSearch();
+  const { query } = useGlobalContext();
   const items = useVideos(query);
 
   if (!items || items.length < 0)
