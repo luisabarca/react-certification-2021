@@ -2,25 +2,25 @@
 
 exports[`VideoList Component should match snapshot 1`] = `
 <div
-  className="sc-eCApnc hZJCFU"
+  className="sc-hKFxyN bLipdE"
 >
   <div
     role="link"
   >
     <div
-      className="sc-bdnxRM kUVGDG"
+      className="MuiPaper-root MuiCard-root makeStyles-card-1 MuiPaper-elevation1 MuiPaper-rounded"
     >
       <div
-        className="sc-hKFxyN dhoOuF"
+        className="sc-dlnjwi efxPah"
         role="img"
       />
       <h2
-        className="sc-gtsrHT idyCrf"
+        className="sc-bdnxRM llyFNT"
       >
         Video Tour | Welcome to Wizeline Guadalajara
       </h2>
       <p
-        className="sc-dlnjwi iOGlgu"
+        className="sc-gtsrHT hDZSOc"
         role="note"
       >
         Follow Hector Padilla, Wizeline Director of Engineering, for a lively tour of our office.
@@ -37,19 +37,19 @@ If you're interested in working with Wizeline and want to experience the culture
     role="link"
   >
     <div
-      className="sc-bdnxRM kUVGDG"
+      className="MuiPaper-root MuiCard-root makeStyles-card-1 MuiPaper-elevation1 MuiPaper-rounded"
     >
       <div
-        className="sc-hKFxyN cyzGyG"
+        className="sc-dlnjwi dZqklC"
         role="img"
       />
       <h2
-        className="sc-gtsrHT idyCrf"
+        className="sc-bdnxRM llyFNT"
       >
         San Francisco to Guadalajara: Why I Moved From the Bay Area to Mexico for My Career
       </h2>
       <p
-        className="sc-dlnjwi iOGlgu"
+        className="sc-gtsrHT hDZSOc"
         role="note"
       >
         Claire Wright is a Project Manager at Wizeline, and made the move from Silicon Valley to Guadalajara last year. Watch Claire’s Collaboration Without Borders story to learn about her time abroad, and why she’s having the most valuable experiences of her career!
@@ -62,19 +62,19 @@ Up for a challenge? Apply today: www.wizeline.com/careers
     role="link"
   >
     <div
-      className="sc-bdnxRM kUVGDG"
+      className="MuiPaper-root MuiCard-root makeStyles-card-1 MuiPaper-elevation1 MuiPaper-rounded"
     >
       <div
-        className="sc-hKFxyN llKFZp"
+        className="sc-dlnjwi eARWKt"
         role="img"
       />
       <h2
-        className="sc-gtsrHT idyCrf"
+        className="sc-bdnxRM llyFNT"
       >
         Wizeline Hiring Process Overview
       </h2>
       <p
-        className="sc-dlnjwi iOGlgu"
+        className="sc-gtsrHT hDZSOc"
         role="note"
       >
         Have you ever wondered what is Wizeline looking for in a Software Engineer and how our hiring process looks? Look no further!

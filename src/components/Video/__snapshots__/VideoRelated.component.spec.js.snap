@@ -5,14 +5,14 @@ exports[`VideoRelated Component should match snapshot 1`] = `
   role="link"
 >
   <div
-    className="sc-bdnxRM gCQmhL"
+    className="sc-bdnxRM jDfQMU"
   >
     <div
       className="sc-dlnjwi kFVqTn"
       role="img"
     />
     <h2
-      className="sc-gtsrHT futQnX"
+      className="sc-gtsrHT djjKNm makeStyles-title-1"
     >
       Video Tour | Welcome to Wizeline Guadalajara
     </h2>
