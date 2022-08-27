@@ -27,7 +27,7 @@ function HomePage() {
 
   return (
     <section className="homepage" ref={sectionRef}>
-      <HomeTitle>Welcome to the Challenge!</HomeTitle>
+      <HomeTitle>Welcome a MyYoutube!</HomeTitle>
       {authenticated ? (
         <>
           <h2>Good to have you back</h2>
