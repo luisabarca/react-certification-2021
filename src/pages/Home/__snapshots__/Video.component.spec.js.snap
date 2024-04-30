@@ -5,19 +5,19 @@ exports[`Video Component should match snapshot 1`] = `
   role="link"
 >
   <div
-    className="sc-bdnxRM kUVGDG"
+    className="MuiPaper-root MuiCard-root makeStyles-card-1 MuiPaper-elevation1 MuiPaper-rounded"
   >
     <div
-      className="sc-hKFxyN dhoOuF"
+      className="sc-dlnjwi efxPah"
       role="img"
     />
     <h2
-      className="sc-gtsrHT idyCrf"
+      className="sc-bdnxRM llyFNT"
     >
       Video Tour | Welcome to Wizeline Guadalajara
     </h2>
     <p
-      className="sc-dlnjwi iOGlgu"
+      className="sc-gtsrHT hDZSOc"
       role="note"
     >
       Follow Hector Padilla, Wizeline Director of Engineering, for a lively tour of our office.

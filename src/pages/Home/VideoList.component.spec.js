@@ -6,7 +6,7 @@ import { render, screen } from '@testing-library/react';
 // CUT.
 import VideoList from './VideoList.component';
 
-import { SearchContext } from '../../providers/SearchProvider';
+import { GlobalContext } from '../../providers/GlobalProvider';
 
 // Returns 3 videos
 jest.mock('../../utils/hooks/useVideos');
@@ -17,15 +17,15 @@ jest.mock('react-router-dom', () => {
   };
 });
 
-const renderVideoListWithSearchProvider = (snap) => {
+const renderVideoListWithGlobalProvider = (snap) => {
   const query = 'Wizeline';
   const setQuery = jest.fn();
   const isSnap = snap || false;
 
   const component = (
-    <SearchContext.Provider value={{ query, setQuery}}>
+    <GlobalContext.Provider value={{ query, setQuery }}>
       <VideoList />
-    </SearchContext.Provider>
+    </GlobalContext.Provider>
   );
 
   if (isSnap) {
@@ -35,16 +35,15 @@ const renderVideoListWithSearchProvider = (snap) => {
   return render(component);
 };
 
-
 describe('VideoList Component', () => {
   it('should match snapshot', () => {
-    const snap = renderVideoListWithSearchProvider(true);
+    const snap = renderVideoListWithGlobalProvider(true);
 
     expect(snap.toJSON()).toMatchSnapshot();
   });
 
   it('should render a list of 3 video', () => {
-    renderVideoListWithSearchProvider();
+    renderVideoListWithGlobalProvider();
 
     const listItems = screen.getAllByRole('link');
     expect(listItems.length).toBeGreaterThanOrEqual(3);

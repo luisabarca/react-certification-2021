@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import { useAuth } from '../../providers/Auth';
+import { useGlobalContext } from '../../providers/GlobalProvider';
 import VideoList from './VideoList.component';
 
 const HomeTitle = styled.h1`
@@ -17,7 +17,7 @@ const HomeTitle = styled.h1`
 function HomePage() {
   const history = useHistory();
   const sectionRef = useRef(null);
-  const { authenticated, logout } = useAuth();
+  const { authenticated, logout } = useGlobalContext();
 
   function deAuthenticate(event) {
     event.preventDefault();

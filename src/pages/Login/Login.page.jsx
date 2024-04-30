@@ -1,11 +1,11 @@
 import React from 'react';
 import { useHistory } from 'react-router';
 
-import { useAuth } from '../../providers/Auth';
+import { useGlobalContext } from '../../providers/GlobalProvider';
 import './Login.styles.css';
 
 function LoginPage() {
-  const { login } = useAuth();
+  const { login } = useGlobalContext();
   const history = useHistory();
 
   function authenticate(event) {
